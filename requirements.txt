@@ -1,0 +1,9 @@
+pandas
+numpy
+pyarrow
+scikit-learn
+xgboost
+joblib
+pyomo
+boto3
+pyyaml>=6.0

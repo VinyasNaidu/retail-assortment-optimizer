@@ -1,0 +1,66 @@
+# configs/config.yaml
+
+paths:
+  local_base: "outputs"
+  raw: "outputs/raw"
+  features: "outputs/features"
+  models: "outputs/models"
+  forecasts: "outputs/forecasts"
+  assortments: "outputs/assortments"
+  reports: "outputs/reports"
+
+aws:
+  region: "us-east-1"
+  s3_bucket: "your-bucket-name"
+  s3_prefix: "retail-opt"
+
+data:
+  seed: 42
+  num_stores: 75
+  num_skus: 600
+  num_suppliers: 25
+  weeks_history: 52
+  
+  regions: ["Northeast", "Southeast", "Midwest", "Southwest", "West"]
+  store_types: ["Urban", "Suburban", "Rural"]
+  store_sizes: ["Small", "Medium", "Large"]
+  
+  categories:
+    - Beverages
+    - Snacks
+    - Dairy
+    - Bakery
+    - Frozen
+    - Meat
+    - Produce
+    - Canned
+    - Condiments
+    - Breakfast
+    - Personal Care
+    - Household
+
+features:
+  lag_weeks: [1, 2, 4, 8]
+  rolling_windows: [4, 8, 12]
+  test_weeks: 12
+
+forecasting:
+  model: "gradient_boosting"
+  cv_folds: 3
+  forecast_weeks: 4
+  
+  params:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    random_state: 42
+
+optimization:
+  solver: "cbc"
+  time_limit: 300
+  mip_gap: 0.02
+  
+  defaults:
+    min_skus_per_category: 3
+    max_skus_per_category: 30
+    shelf_utilization_target: 0.85
